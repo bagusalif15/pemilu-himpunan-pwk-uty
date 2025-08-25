@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pemilihan Ketua Himpunan PWK UTY</title>
+  <style>
+    body { font-family: sans-serif; max-width: 500px; margin: 50px auto; text-align: center; }
+    input, select, button { width: 100%; padding: 10px; margin: 10px 0; }
+  </style>
 </head>
 <body>
-  <h2>Pemilihan Ketua Himpunan PWK UTY</h2>
+  <h2>Pemilihan Ketua dan Wakil Ketua Himpunan PWK UTY</h2>
   <form id="votingForm">
     <label>Angkatan:</label>
     <select id="angkatan" required>
@@ -14,26 +18,22 @@
       <option value="2022">2022</option>
       <option value="2023">2023</option>
       <option value="2024">2024</option>
-    </select><br><br>
-
+    </select>
     <label>NPM:</label>
-    <input type="text" id="npm" required><br><br>
-
+    <input type="text" id="npm" placeholder="Masukkan NPM" required>
     <label>Pilih Ketua:</label>
     <select id="pilihan" required>
       <option value="">--Pilih Kandidat--</option>
       <option value="Kandidat 1">Kandidat 1</option>
       <option value="Kandidat 2">Kandidat 2</option>
       <option value="Kandidat 3">Kandidat 3</option>
-    </select><br><br>
-
+    </select>
     <button type="submit">Kirim Suara</button>
   </form>
-
   <p id="status"></p>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycby84yr_XNIzmb5ssEOv2JNI4VVykH9XjRitmDCGQGXXb1kay-0LJmApv7BIyIVFjscK/exec'; // GANTI dengan URL Web App milikmu
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby84yr_XNIzmb5ssEOv2JNI4VVykH9XjRitmDCGQGXXb1kay-0LJmApv7BIyIVFjscK/exec';
 
     document.getElementById('votingForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -47,11 +47,11 @@
         headers: { 'Content-Type': 'application/json' }
       })
       .then(response => {
-        document.getElementById('status').innerText = "Terima kasih, suara Anda telah tercatat!";
+        document.getElementById('status').innerText = 'Terima kasih, suara Anda telah tercatat!';
         document.getElementById('votingForm').reset();
       })
       .catch(error => {
-        document.getElementById('status').innerText = "Gagal mengirim suara.";
+        document.getElementById('status').innerText = 'Gagal mengirim suara.';
       });
     });
   </script>
